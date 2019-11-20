@@ -1,10 +1,13 @@
 package com.example.evenlypoi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AbsListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.poi_row.*
 import okhttp3.*
 import java.io.IOException
 
@@ -23,6 +26,12 @@ class MainActivity : AppCompatActivity() {
 
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
+
+
+
+
+
+        //imageView_share.setOnClickListener(){
 
 
         searchPoisUrl()
