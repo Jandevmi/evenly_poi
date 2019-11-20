@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.poi_row.view.*
 
-class MainAdapter: RecyclerView.Adapter<CustomViewHolder>(){
+class MainAdapter(val poi: List<Venue>): RecyclerView.Adapter<CustomViewHolder>(){
 
-    val poiTitles = listOf<String>("First", "Second", "3rd", "more")
+    //val poiTitles = listOf<Venue>()
+    //var pois = listOf<Venue>()
 
     override fun getItemCount(): Int {
         return 12
@@ -21,10 +22,7 @@ class MainAdapter: RecyclerView.Adapter<CustomViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        var poiTitle = poiTitles[3]
-        if(position<3) {
-            poiTitle = poiTitles[position]
-        }
+        var poiTitle = poi[position].name
         holder.view.textView_poiTitle.text = poiTitle
     }
 }

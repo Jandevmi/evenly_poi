@@ -3,6 +3,7 @@ package com.example.evenlypoi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import java.io.IOException
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        recyclerView_main.adapter = MainAdapter()
+
 
         searchPoisUrl()
     }
@@ -45,18 +46,30 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder().url(url).build()
-        println(url.toString())
-        println(request.toString())
+        println("Build URL: " + url.toString())
+        println("Build Request: " + request.toString())
 
         client.newCall(request).enqueue(object: Callback {
-            override fun onResponse(call: Call, response: Response) {
+            override fun onResponse(call: Call, response: okhttp3.Response) {
                 val body = response.body?.string()
                 println(body)
+
+                val gson = GsonBuilder().create()
+                gson.fromJson(body, HomeFeed::class.java)
+
+            val homeFeed = gson.fromJson(body, HomeFeed::class.java)
+
+                runOnUiThread {
+                    recyclerView_main.adapter = MainAdapter(homeFeed.response.venues)
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {
                 println("Failed to execute request")
             }
         })
+
     }
 }
+
+
