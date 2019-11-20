@@ -15,15 +15,15 @@ class MainAdapter: RecyclerView.Adapter<CustomViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.poi_row, parent, false)
         return CustomViewHolder(cellForRow)
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        var poiTitle = poiTitles.get(3)
+        var poiTitle = poiTitles[3]
         if(position<3) {
-            poiTitle = poiTitles.get(position)
+            poiTitle = poiTitles[position]
         }
         holder.view.textView_poiTitle.text = poiTitle
     }
