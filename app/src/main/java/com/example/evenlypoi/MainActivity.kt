@@ -1,13 +1,10 @@
 package com.example.evenlypoi
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AbsListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.poi_row.*
 import okhttp3.*
 import java.io.IOException
 
@@ -23,14 +20,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         recyclerView_main.layoutManager = LinearLayoutManager(this)
 
-        searchPoisUrl()
+        showPois()
     }
 
-    fun searchPoisUrl(category: String = ""){
+    fun showPois(){
 
         val client = OkHttpClient()
         val url = HttpUrl.Builder()
@@ -52,17 +47,22 @@ class MainActivity : AppCompatActivity() {
         println("Build Request: " + request.toString())
 
 
-        var activity = this
+        // need
+        val activity = this
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call, response: okhttp3.Response) {
                 val body = response.body?.string()
                 println(body)
 
+                // convert from json to homefeed
                 val gson = GsonBuilder().create()
                 gson.fromJson(body, HomeFeed::class.java)
+                val homeFeed = gson.fromJson(body, HomeFeed::class.java)
 
-            val homeFeed = gson.fromJson(body, HomeFeed::class.java)
+                //Drop evenly HQ from List
+                homeFeed.response.venues.drop(5)
 
+                // set up recyclerView
                 runOnUiThread {
                     recyclerView_main.adapter = MainAdapter(activity, homeFeed.response.venues)
                 }

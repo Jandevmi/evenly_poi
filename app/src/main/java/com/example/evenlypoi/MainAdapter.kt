@@ -1,6 +1,5 @@
 package com.example.evenlypoi
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -27,9 +26,10 @@ class MainAdapter(val activity: AppCompatActivity, val poi: List<Venue>): Recycl
 
     // set up row
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+
         holder.view.textView_poiTitle.text = poi[position].name
         holder.view.textView_poiCategory.text = poi[position].categories!![0].shortName
-        holder.view.textView_poiDistance.text = poi[position].location!!.distance + "m from evently"
+        holder.view.textView_poiDistance.text = poi[position].location!!.distance + "m from evenly"
 
         // change icon
         Glide.with(activity)
@@ -51,7 +51,8 @@ class MainAdapter(val activity: AppCompatActivity, val poi: List<Venue>): Recycl
 
         // open POI in Google Maps
         holder.view.imageView_maps.setOnClickListener{
-            val uri = Uri.parse("geo:0,0?q=" + poi[position].name + ", " + poi[position].location!!.address + ", Berlin")
+            val uri = Uri.parse("geo:0,0?q=" + poi[position].name + ", " +
+                    poi[position].location!!.address + ", Berlin")
             val intent = Intent(Intent.ACTION_VIEW)
             intent.apply { data = uri }
             intent.setPackage("com.google.android.apps.maps")
