@@ -25,7 +25,13 @@ class MainActivity : AppCompatActivity() {
         showPois()
     }
 
+    //Todo
+    //Add onClick for Icons to slected POIs by category
+
     fun showPois(){
+
+        //ToDo
+        //Implement category as an optimal parameter
 
         val client = OkHttpClient()
         val url = HttpUrl.Builder()
@@ -59,8 +65,9 @@ class MainActivity : AppCompatActivity() {
                 gson.fromJson(body, HomeFeed::class.java)
                 val homeFeed = gson.fromJson(body, HomeFeed::class.java)
 
-                //Drop evenly HQ from List
-                homeFeed.response.venues.drop(5)
+                //ToDO
+                //Drop Evenly HQ from List
+                //Sort List by distance
 
                 // set up recyclerView
                 runOnUiThread {
