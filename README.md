@@ -1,4 +1,4 @@
-##Evenly Developer Challenge
+## Evenly Developer Challenge
 
 #### Challenges
 
@@ -18,21 +18,21 @@
 
 #### Questions
 
-* To show / proud of
+* To show / proud of\
     Clear code by using proper librarys, implementation of individual links for each holder
-* Most headache
+* Most headache\
     Converting JSON, it took a while to properly make the JsonClasses.kt
-* Feature picks
+* Feature picks\
     Choose to work with a recycler view, because I ha a good guide, it was easy to set up and has good performance
-* Persist data
+* Persist data\
     Didn´t persist any data, since I can get everything from foursquare API
-* 50+ locations
+* 50+ locations\
     Good performance from recyclerView makes it possible to show many locations
-* Multi-core CPU
+* Multi-core CPU\
     Not used, no experience
-* Common errors
+* Common errors\
     Netwrok error, No Response from API,
-* Software tests
+* Software tests\
     No tests implemented
-* Get ready for Play Store
+* Get ready for Play Store\
     No experience, but I should change the App Logo
