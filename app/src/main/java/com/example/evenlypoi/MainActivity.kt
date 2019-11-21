@@ -27,13 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
 
-
-
-
-
-        //imageView_share.setOnClickListener(){
-
-
         searchPoisUrl()
     }
 
@@ -58,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         println("Build URL: " + url.toString())
         println("Build Request: " + request.toString())
 
+
+        var activity = this
         client.newCall(request).enqueue(object: Callback {
             override fun onResponse(call: Call, response: okhttp3.Response) {
                 val body = response.body?.string()
@@ -69,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             val homeFeed = gson.fromJson(body, HomeFeed::class.java)
 
                 runOnUiThread {
-                    recyclerView_main.adapter = MainAdapter(homeFeed.response.venues)
+                    recyclerView_main.adapter = MainAdapter(activity, homeFeed.response.venues)
                 }
             }
 

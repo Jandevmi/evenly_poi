@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -37,5 +39,6 @@ dependencies {
     // 3rd party libs
     implementation("com.squareup.okhttp3:okhttp:4.2.1") // HTTP client
     implementation 'com.google.code.gson:gson:2.8.6' // JSON converter
-    //implementation "com.github.bumptech.glide:glide:$version_glide" // display images from URL
+    implementation 'com.github.bumptech.glide:glide:4.10.0' // Pic upload
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
 }

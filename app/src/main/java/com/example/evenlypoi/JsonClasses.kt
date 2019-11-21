@@ -7,19 +7,19 @@ class Meta(val code: String, val requestId: String)
 class Response(val venues: List<Venue>)
 
 class Venue (
-    val id: String?,
-    val name: String?,
-    val location: Location?,
+    val id: String,
+    val name: String,
+    val location: Location,
     val categories: List<Category>?)
 
 class Location (
-    val address: String?,
-    val distance: String?)
+    val address: String,
+    val distance: String)
 
 class Category(
     val shortName: String,
-    val icon: Icon?)
+    val icon: Icon)
 
 class Icon(
-    prefix: String?,
-    suffix: String?)
+    val prefix: String,
+    val suffix: String)
